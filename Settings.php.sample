@@ -25,6 +25,8 @@ $lsAdminPassword = "passw@rd"; // REPLACE TO A STRONG PASSWORD
 $lsNewAPIBase = "http://127.0.0.1:8080";
 // New API Administrator Access Token
 $lsNewAPIToken = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+// New API Default Group
+$lsNewAPIGroup = "default";
 
 // == APPEARANCE ==
 // Site Title
