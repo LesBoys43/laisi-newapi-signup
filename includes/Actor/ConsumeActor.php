@@ -5,8 +5,9 @@ namespace LaiSiSignup\Actor {
 	use LaiSiSignup\Worker\NewAPIAccountCreator;
 
 	class ConsumeActor extends Actor {
-		public function checkPostcondition(): string|true {
-			return isset($this->args["code"]);
+		public function checkPrecondition(): string|true {
+			if (!isset($this->args["code"])) return "Code must be provided";
+			return true;
 		}
 		public function act(): ?array {
 			$code = Code::newFromCode($this->args["code"]);
@@ -21,7 +22,7 @@ namespace LaiSiSignup\Actor {
 				return ["username" => $username, "password" => $password];
 			}
 		}
-		public function checkPrecondition(): string|true {
+		public function checkPostcondition(): string|true {
 			return true;
 		}
 	}
