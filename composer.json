@@ -1,0 +1,21 @@
+{
+    "autoload": {
+        "psr-4": {
+            "LaiSiSignup\\": "includes/"
+        }
+    },
+    "minimum-stability": "stable",
+    "require-dev": {
+        "mediawiki/mediawiki-codesniffer": "^51.0",
+        "mediawiki/mediawiki-phan-config": "^0.20.0"
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    },
+    "require": {
+        "symfony/polyfill": "^1.42",
+        "guzzlehttp/guzzle": "^8.1"
+    }
+}

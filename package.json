@@ -1,0 +1,26 @@
+{
+  "dependencies": {
+    "@wikimedia/codex": "^2.6.0",
+    "@wikimedia/codex-design-tokens": "^2.6.0",
+    "@wikimedia/codex-icons": "^2.6.0",
+    "vue": "^3.5.41",
+    "vue-router": "^5.2.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^29.0.3",
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "@rollup/plugin-replace": "^6.0.3",
+    "@rollup/plugin-terser": "^1.0.0",
+    "@rollup/plugin-typescript": "^12.3.0",
+    "eslint": "^8.57.1",
+    "eslint-config-wikimedia": "^0.32.5",
+    "less": "^4.9.0",
+    "rollup": "^4.63.1",
+    "stylelint": "^17.14.1",
+    "stylelint-config-wikimedia": "^0.19.3",
+    "tslib": "^2.8.1",
+    "typescript": "^5.9.3"
+  },
+  "type": "module",
+  "sideEffects": false
+}

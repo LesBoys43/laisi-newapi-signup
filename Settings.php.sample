@@ -1,0 +1,31 @@
+<?php
+
+// Copy it into Settings.php, then modify values
+
+if (!defined("LaiSiAISignup")) die("这是个棍母，你以为有配置啊");
+
+// == DB ==
+// PostgreSQL Host
+$lsDatabaseHost = "127.0.0.1";
+// PostgreSQL Port
+$lsDatabasePort = "5432";
+// PostgreSQL Database Name
+$lsDatabaseDB = "LaiSiSignup";
+// PostgreSQL Username
+$lsDatabaseUser = "postgres";
+// PostgreSQL Password
+$lsDatabasePass = "123456";
+
+// == ADMIN  ==
+// Administrator Password
+$lsAdminPassword = "passw@rd"; // REPLACE TO A STRONG PASSWORD
+
+// == NEW API ==
+// New API Base URI
+$lsNewAPIBase = "http://127.0.0.1:8080";
+// New API Administrator Access Token
+$lsNewAPIToken = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+
+// == APPEARANCE ==
+// Site Title
+$lsSiteTitle = "超级AI";

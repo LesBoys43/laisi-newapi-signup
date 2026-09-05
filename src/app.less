@@ -1,0 +1,100 @@
+@import (reference)
+  "../node_modules/@wikimedia/codex-design-tokens/theme-wikimedia-ui.less";
+@import (reference)
+  "../node_modules/@wikimedia/codex/dist/mixins/typography.less";
+@import (reference) "../node_modules/@wikimedia/codex/dist/mixins/link.less";
+
+.cdx-mixin-typography();
+
+a {
+  .cdx-mixin-link();
+}
+
+.nav {
+  border: @border-base;
+  background: linear-gradient(
+    to bottom,
+    @background-color-progressive-subtle--active,
+    @background-color-progressive-subtle
+  );
+  padding-inline: @spacing-75;
+  display: flex;
+  align-items: center;
+
+  > * {
+    display: inline-flex;
+  }
+  > h1 {
+    display: inline;
+    margin-block: 0;
+    margin-inline: @spacing-75;
+    flex: 1;
+  }
+  &__go-home {
+    &--hidden {
+      visibility: hidden;
+    }
+  }
+  &__go-admin {
+    float: right;
+
+    &:focus:not(:focus-visible) {
+      outline: none !important;
+      box-shadow: none !important;
+    }
+  }
+}
+
+.registration-form {
+  margin: @size-1200;
+  min-height: @size-800;
+  min-width: @size-1200;
+  background: linear-gradient(
+    to bottom,
+    @background-color-progressive-subtle,
+    @background-color-destructive-subtle
+  );
+  text-align: center;
+
+  &:hover {
+    background: linear-gradient(
+      to bottom,
+      @background-color-progressive-subtle--hover,
+      @background-color-destructive-subtle--hover
+    );
+  }
+  &:active {
+    background: linear-gradient(
+      to bottom,
+      @background-color-progressive-subtle--active,
+      @background-color-destructive-subtle--active
+    );
+  }
+
+  .cdx-card__text {
+    width: 100%;
+
+    &__title {
+      font-size: @font-size-xx-large;
+      line-height: @line-height-xx-large;
+      margin-bottom: @spacing-300;
+    }
+  }
+}
+
+.admin-login {
+  margin: @size-800;
+  padding: @spacing-75;
+  border: @border-base;
+  display: flex;
+  flex-direction: column;
+
+  h3 {
+    margin-top: 0;
+    text-align: center;
+  }
+
+  &__button {
+    align-self: center;
+  }
+}

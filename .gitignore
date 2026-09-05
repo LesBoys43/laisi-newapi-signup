@@ -1,0 +1,10 @@
+vendor
+composer.lock
+package-lock.json
+node_modules
+Settings.php
+build
+src/*.css
+.vscode
+.DS_Store
+*.tmp

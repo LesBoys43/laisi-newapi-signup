@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+
+<ruleset name="Les">
+	<description>Les' Coding Standard</description>
+	<rule ref="./vendor/mediawiki/mediawiki-codesniffer/MediaWiki/ruleset.xml">
+		<exclude name="Squiz.Functions.FunctionDeclarationArgumentSpacing"/>
+		<exclude name="Squiz.WhiteSpace.FunctionSpacing"/>
+		<exclude name="Generic.ControlStructures.InlineControlStructure"/>
+	</rule>
+	<rule ref="MediaWiki">
+		<exclude name="MediaWiki.Commenting.ClassLevelLicense"/>
+		<exclude name="MediaWiki.Commenting.LicenseComment"/>
+		<exclude name="MediaWiki.Commenting.MissingCovers"/>
+		<exclude name="MediaWiki.Commenting.PhpunitAnnotations"/>
+		<exclude name="MediaWiki.NamingConventions"/>
+		<exclude name="MediaWiki.PHPUnit"/>
+		<exclude name="MediaWiki.Usage.AssignmentInReturn"/>
+		<exclude name="MediaWiki.Usage.DbrQueryUsage"/>
+		<exclude name="MediaWiki.Usage.DeprecatedConstantUsage"/>
+		<exclude name="MediaWiki.Usage.DeprecatedGlobalVariables"/>
+		<exclude name="MediaWiki.Usage.ExtendClassUsage"/>
+		<exclude name="MediaWiki.Usage.ForbiddenFunctions"/>
+		<exclude name="MediaWiki.Usage.IsNull"/>
+		<exclude name="MediaWiki.Usage.StaticClosure"/>
+		<exclude name="MediaWiki.Usage.SuperGlobalsUsage"/>
+		<exclude name="MediaWiki.VariableAnalysis"/>
+		<exclude name="MediaWiki.WhiteSpace.SpaceyParenthesis"/>
+	</rule>
+</ruleset>
