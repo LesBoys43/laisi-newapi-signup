@@ -10,6 +10,8 @@ namespace LaiSiSignup\Worker {
 			global $lsNewAPIBase;
 			/** @var string */
 			global $lsNewAPIToken;
+			/** @var string */
+			global $lsNewAPIGroup;
 			$client = new Client([
 				"base_uri" => $lsNewAPIBase
 			]);
@@ -34,7 +36,7 @@ namespace LaiSiSignup\Worker {
 				],
 				"json" => [
 					"id" => $id,
-					"group" => "user",
+					"group" => $lsNewAPIGroup,
 					"username" => $username,
 					"display_name" => $displayName
 				]
