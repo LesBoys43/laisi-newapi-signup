@@ -1,4 +1,4 @@
-import {TableRowIdentifier, CdxTable, CdxButton, CdxIcon, CdxTooltip} from '@wikimedia/codex';
+import {TableRowIdentifier, CdxTable, CdxButton, CdxIcon, CdxTooltip, useToast} from '@wikimedia/codex';
 import {cdxIconAdd, cdxIconReload} from '@wikimedia/codex-icons';
 import {defineComponent, PropType, h, withDirectives, ComponentPublicInstance} from 'vue';
 import {Code} from '../types';
@@ -14,6 +14,7 @@ export default defineComponent({
 			type: Object as PropType<Record<Code['id'], Code>>,
 		},
 	},
+	inject: ['toastMgr'],
 	emits: [
 		'revoke',
 		'create',
@@ -30,6 +31,7 @@ export default defineComponent({
 	},
 	render() {
 		const self = this;
+		const toastMgr = self.toastMgr as ReturnType<typeof useToast>;
 		return [
 			h(CdxTable, {
 				caption: '仪表板',
@@ -76,6 +78,7 @@ export default defineComponent({
 						weight: 'quiet',
 						onClick() {
 							self.$emit('refresh');
+							toastMgr.success('复制成功', {autoDismiss: 10000});
 						},
 					}, () => h(CdxIcon, {icon: cdxIconReload})), [
 						[
