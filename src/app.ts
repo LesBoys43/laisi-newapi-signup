@@ -3,6 +3,7 @@ import AdminPage from './AdminPage';
 import HomePage from './HomePage';
 import {Page} from './types';
 import Nav from './nav';
+import AnnouncementDialog from './components/AnnouncementDialog';
 
 export default defineComponent({
 	name: 'App',
@@ -10,10 +11,19 @@ export default defineComponent({
 		return {
 			page: 'Home',
 			title: 'API',
+			announcement: '',
+			announcementClosed: parseInt(localStorage.getItem('ignored') ?? '0') === Math.floor(Date.now() / (86400 * 1000)),
 		} as {
 			page: Page;
 			title: string;
+			announcement: string;
+			announcementClosed: boolean;
 		};
+	},
+	computed: {
+		announcementOpen() {
+			return !this.announcementClosed && this.announcement !== '';
+		},
 	},
 	watch: {
 		title: {
@@ -26,9 +36,10 @@ export default defineComponent({
 	created() {
 		fetch('/api.php?action=query&meta=site_info')
 			.then((r) => r.json())
-			.then(({data: {meta: {site_info: {title}}}}:
-			{data: {meta: {site_info: {title: string}}}}) => {
+			.then(({data: {meta: {site_info: {title, announcement}}}}:
+			{data: {meta: {site_info: {title: string; announcement: string}}}}) => {
 				this.title = title;
+				this.announcement = announcement;
 			});
 	},
 	render() {
@@ -42,6 +53,14 @@ export default defineComponent({
 				},
 				onGoAdmin() {
 					self.page = 'Admin';
+				},
+			}),
+			h(AnnouncementDialog, {
+				open: self.announcementOpen,
+				announcement: self.announcement,
+				onClose(ignoreWithinDay: boolean) {
+					self.announcementClosed = true;
+					if (ignoreWithinDay) localStorage.setItem('ignored', Math.floor(Date.now() / (86400 * 1000)).toString());
 				},
 			}),
 			h({Home: HomePage, Admin: AdminPage}[self.page]),
