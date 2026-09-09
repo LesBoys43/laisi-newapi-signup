@@ -8,8 +8,11 @@ namespace LaiSiSignup\Query\Meta {
 		public function query(): ?array {
 			/** @var string $lsSiteTitle */
 			global $lsSiteTitle;
+			/** @var string $lsSiteAnnouncement */
+			global $lsSiteAnnouncement;
 			return [
-				"title" => $lsSiteTitle
+				"title" => $lsSiteTitle,
+				"announcement" => $lsSiteAnnouncement
 			];
 		}
 	}

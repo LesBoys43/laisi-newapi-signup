@@ -31,3 +31,5 @@ $lsNewAPIGroup = "default";
 // == APPEARANCE ==
 // Site Title
 $lsSiteTitle = "超级AI";
+// Announcement
+$lsSiteAnnouncement = "（在这里填写一些公告内容）";
