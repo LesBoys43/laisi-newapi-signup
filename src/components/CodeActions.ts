@@ -1,11 +1,11 @@
 import {CdxButton, CdxIcon, CdxTooltip} from '@wikimedia/codex';
-import {cdxIconUndo} from '@wikimedia/codex-icons';
+import {cdxIconCopy, cdxIconUndo} from '@wikimedia/codex-icons';
 import {defineComponent, withDirectives, h} from 'vue';
 import RevokeConfirmDialog from './RevokeConfirmDialog';
 
 export default defineComponent({
 	name: 'CodeActions',
-	emits: ['revoke'],
+	emits: ['revoke', 'copy'],
 	data() {
 		return {confirming: false};
 	},
@@ -22,6 +22,18 @@ export default defineComponent({
 				[
 					CdxTooltip,
 					'吊销该注册码',
+					'top',
+				],
+			]),
+			withDirectives(h(CdxButton, {
+				weight: 'quiet',
+				onClick() {
+					self.$emit('copy');
+				},
+			}, () => h(CdxIcon, {icon: cdxIconCopy})), [
+				[
+					CdxTooltip,
+					'复制注册码',
 					'top',
 				],
 			]),

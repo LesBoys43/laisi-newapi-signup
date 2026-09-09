@@ -58,13 +58,16 @@ export default defineComponent({
 						},
 					}, () => [h(CdxIcon, {icon: cdxIconAdd}), '生成新注册码']);
 				},
-				'item-usage'({row: {[TableRowIdentifier]: id}}: {row: {[TableRowIdentifier]: Code['id']}}) {
+				'item-usage'({row: {[TableRowIdentifier]: id}}: {row: {[TableRowIdentifier]: Code['id']} & Pick<Code, 'id' | 'code'>}) {
 					return h(UsageChip, {data: self.data[id]});
 				},
-				'item-actions'({row: {[TableRowIdentifier]: id}}: {row: {[TableRowIdentifier]: Code['id']}}) {
+				'item-actions'({row: {[TableRowIdentifier]: id, code}}: {row: {[TableRowIdentifier]: Code['id']} & Pick<Code, 'id' | 'code'>}) {
 					return h(CodeActions, {
 						onRevoke() {
 							self.$emit('revoke', id);
+						},
+						onCopy() {
+							navigator.clipboard.writeText(code);
 						},
 					});
 				},
