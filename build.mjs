@@ -41,7 +41,7 @@ const bundle = await rollup({
   plugins: [
     typescript({ tsconfig: "./tsconfig.json" }),
     replace({
-      "process.env.NODE_ENV": JSON.stringify("devlopment"),
+      "process.env.NODE_ENV": JSON.stringify("development"),
     }),
     nodeResolve(),
     commonjs(),
