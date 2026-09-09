@@ -104,3 +104,23 @@ a {
     float: right;
   }
 }
+
+:root:has(.error) {
+  html {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    color: #202122;
+  }
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 50vw;
+  }
+  .error__message {
+    min-height: 6rem;
+  }
+}
