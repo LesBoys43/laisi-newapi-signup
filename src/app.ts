@@ -69,10 +69,12 @@ export default defineComponent({
 			h(AnnouncementDialog, {
 				open: self.announcementOpen,
 				announcement: self.announcement,
+				ignoreInitial: localStorage.hasItem('ignored'),
 				onClose(ignoreWithinDay: boolean) {
 					self.announcementClosed = true;
 					self.haveNewAnnouncement = false;
 					if (ignoreWithinDay) localStorage.setItem('ignored', Math.floor(Date.now() / (86400 * 1000)).toString());
+					else localStorage.removeItem('ignored');
 				},
 			}),
 			h({Home: HomePage, Admin: AdminPage}[self.page]),

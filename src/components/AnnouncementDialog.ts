@@ -12,9 +12,13 @@ export default defineComponent({
 			type: Boolean,
 			required: true,
 		},
+		ignoreInitial: {
+			type: Boolean,
+			required: true,
+		},
 	},
 	data() {
-		return {ignoreWithinDay: false};
+		return {ignoreWithinDay: this.ignoreInitial};
 	},
 	emits: ['close'],
 	render() {
