@@ -24,6 +24,10 @@ export default defineComponent({
 			codes: Record<Code['id'], Code>;
 		};
 	},
+	created() {
+		if (localStorage.getItem('password') !== null)
+			this.attemptLogin(localStorage.getItem('password')!, true);
+	},
 	render() {
 		const self = this;
 		return [
@@ -36,20 +40,7 @@ export default defineComponent({
 					onRefresh: self.loadDashboard,
 					onCreate: self.createCode,
 				}) :
-				h(LoginCard, {
-					onAttempt(password: string) {
-						fetch('/api.php?action=auth_check', {headers: {Authorization: password}})
-							.then((r) => r.json())
-							.then(({data: {success}}: {data: {success: boolean}}) => {
-								if (success) {
-									self.authorized = true;
-									self.password = password;
-									self.toastMgr.success('欢迎回来', {autoDismiss: 10000});
-									self.loadDashboard();
-								} else self.toastMgr.error('密码错误', {autoDismiss: 10000});
-							});
-					},
-				}),
+				h(LoginCard, {onAttempt: self.attemptLogin}),
 		];
 	},
 	methods: {
@@ -89,6 +80,22 @@ export default defineComponent({
 						},
 					});
 					self.loadDashboard();
+				});
+		},
+		attemptLogin(password: string, remember: boolean) {
+			const self = this;
+			fetch('/api.php?action=auth_check', {headers: {Authorization: password}})
+				.then((r) => r.json())
+				.then(({data: {success}}: {data: {success: boolean}}) => {
+					if (success) {
+						self.authorized = true;
+						self.password = password;
+						if (remember)
+							localStorage.setItem('password', password);
+
+						self.toastMgr.success('欢迎回来', {autoDismiss: 10000});
+						self.loadDashboard();
+					} else self.toastMgr.error('密码错误', {autoDismiss: 10000});
 				});
 		},
 	},

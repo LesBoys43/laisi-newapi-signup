@@ -96,8 +96,21 @@ a {
     text-align: center;
   }
 
-  &__button {
-    align-self: center;
+  &__footer {
+    display: flex;
+
+    > div {
+      display: flex;
+      justify-content: center;
+    }
+
+    &__remember {
+      flex: 3;
+    }
+
+    &__button {
+      flex: 10;
+    }
   }
 }
 
