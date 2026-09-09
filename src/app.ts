@@ -42,6 +42,8 @@ export default defineComponent({
 			{data: {meta: {site_info: {title: string; announcement: string}}}}) => {
 				this.title = title;
 				this.announcement = announcement;
+				this.haveNewAnnouncement = announcement !== localStorage.getItem('announcement');
+				localStorage.setItem('announcement', announcement);
 			});
 	},
 	render() {
@@ -66,6 +68,7 @@ export default defineComponent({
 				announcement: self.announcement,
 				onClose(ignoreWithinDay: boolean) {
 					self.announcementClosed = true;
+					self.haveNewAnnouncement = false;
 					if (ignoreWithinDay) localStorage.setItem('ignored', Math.floor(Date.now() / (86400 * 1000)).toString());
 				},
 			}),
