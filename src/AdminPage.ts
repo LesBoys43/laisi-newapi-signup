@@ -95,7 +95,10 @@ export default defineComponent({
 
 						self.toastMgr.success('欢迎回来', {autoDismiss: 10000});
 						self.loadDashboard();
-					} else self.toastMgr.error('密码错误', {autoDismiss: 10000});
+					} else {
+						self.toastMgr.error('密码错误', {autoDismiss: 10000});
+						localStorage.removeItem('password');
+					}
 				});
 		},
 	},
