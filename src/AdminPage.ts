@@ -74,11 +74,21 @@ export default defineComponent({
 				});
 		},
 		createCode(quota: number) {
-			fetch('/api.php?action=generate_code&quota=' + quota, {headers: {Authorization: this.password}})
+			const self = this;
+			fetch('/api.php?action=generate_code&quota=' + quota, {headers: {Authorization: self.password}})
 				.then((r) => r.json())
 				.then(({data: {code}}: {data: {code: Code['code']}}) => {
-					this.toastMgr.success(`成功生成了新的注册码: ${code.slice(0, 12)}...`, {autoDismiss: 10000});
-					this.loadDashboard();
+					self.toastMgr.success(`成功生成了新的注册码: ${code.slice(0, 12)}...`, {
+						autoDismiss: 10000,
+						actionButton: {
+							label: '复制',
+							onClick() {
+								navigator.clipboard.writeText(code);
+								self.toastMgr.success('复制成功', {autoDismiss: 10000});
+							},
+						},
+					});
+					self.loadDashboard();
 				});
 		},
 	},
