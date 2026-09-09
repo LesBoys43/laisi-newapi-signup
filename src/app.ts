@@ -12,7 +12,7 @@ export default defineComponent({
 			page: 'Home',
 			title: 'API',
 			announcement: '',
-			announcementClosed: parseInt(localStorage.getItem('ignored') ?? '0') === Math.floor(Date.now() / (86400 * 1000)),
+			announcementClosed: true,
 			haveNewAnnouncement: false,
 		} as {
 			page: Page;
@@ -43,6 +43,9 @@ export default defineComponent({
 				this.title = title;
 				this.announcement = announcement;
 				this.haveNewAnnouncement = announcement !== localStorage.getItem('announcement');
+				if (this.haveNewAnnouncement &&
+					parseInt(localStorage.getItem('ignored') ?? '0') !==
+						Math.floor(Date.now() / (86400 * 1000))) this.announcementClosed = false;
 				localStorage.setItem('announcement', announcement);
 			});
 	},
