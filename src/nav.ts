@@ -1,6 +1,6 @@
-import {CdxButton, CdxIcon, CdxToggleButton} from '@wikimedia/codex';
-import {cdxIconArrowPrevious, cdxIconGlobe} from '@wikimedia/codex-icons';
-import {defineComponent, PropType, h} from 'vue';
+import {CdxButton, CdxIcon, CdxToggleButton, CdxTooltip} from '@wikimedia/codex';
+import {cdxIconArrowPrevious, cdxIconBell, cdxIconBellOutline, cdxIconGlobe} from '@wikimedia/codex-icons';
+import {defineComponent, PropType, h, withDirectives} from 'vue';
 import {Page} from './types';
 
 export default defineComponent({
@@ -14,8 +14,16 @@ export default defineComponent({
 			required: true,
 			type: String,
 		},
+		haveNewAnnouncement: {
+			required: true,
+			type: Boolean,
+		},
 	},
-	emits: ['go-home', 'go-admin'],
+	emits: [
+		'go-home',
+		'go-admin',
+		'view-announcement',
+	],
 	render() {
 		const self = this;
 		return h('nav', {class: 'nav'}, [
@@ -30,6 +38,17 @@ export default defineComponent({
 				},
 			}, () => [h(CdxIcon, {icon: cdxIconArrowPrevious}), '回到首页']),
 			h('h1', self.title + '注册'),
+			withDirectives(h(CdxButton, {
+				weight: 'quiet',
+				action: self.haveNewAnnouncement ? 'progressive' : 'default',
+				onClick() {
+					self.$emit('view-announcement');
+				},
+			}, () => h(CdxIcon, {
+				icon: self.haveNewAnnouncement ?
+					cdxIconBell :
+					cdxIconBellOutline,
+			})), [[CdxTooltip, '查看公告']]),
 			h(CdxToggleButton, {
 				modelValue: self.currentPage === 'Admin',
 				'onUpdate:modelValue'(v) {

@@ -13,11 +13,13 @@ export default defineComponent({
 			title: 'API',
 			announcement: '',
 			announcementClosed: parseInt(localStorage.getItem('ignored') ?? '0') === Math.floor(Date.now() / (86400 * 1000)),
+			haveNewAnnouncement: false,
 		} as {
 			page: Page;
 			title: string;
 			announcement: string;
 			announcementClosed: boolean;
+			haveNewAnnouncement: boolean;
 		};
 	},
 	computed: {
@@ -48,11 +50,15 @@ export default defineComponent({
 			h(Nav, {
 				currentPage: self.page,
 				title: self.title,
+				haveNewAnnouncement: self.haveNewAnnouncement,
 				onGoHome() {
 					self.page = 'Home';
 				},
 				onGoAdmin() {
 					self.page = 'Admin';
+				},
+				onViewAnnouncement() {
+					self.announcementClosed = false;
 				},
 			}),
 			h(AnnouncementDialog, {
