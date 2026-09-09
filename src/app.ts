@@ -69,7 +69,7 @@ export default defineComponent({
 			h(AnnouncementDialog, {
 				open: self.announcementOpen,
 				announcement: self.announcement,
-				ignoreInitial: localStorage.hasItem('ignored'),
+				ignoreInitial: localStorage.getItem('ignored') !== null,
 				onClose(ignoreWithinDay: boolean) {
 					self.announcementClosed = true;
 					self.haveNewAnnouncement = false;
