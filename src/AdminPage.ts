@@ -92,7 +92,6 @@ export default defineComponent({
 						self.password = password;
 						if (remember)
 							localStorage.setItem('password', password);
-
 						self.toastMgr.success('欢迎回来', {autoDismiss: 10000});
 						self.loadDashboard();
 					} else {
