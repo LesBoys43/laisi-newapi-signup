@@ -10,6 +10,9 @@ export default defineComponent({
 		const toastMgr = useToast();
 		return {toastMgr};
 	},
+	provide() {
+		return {toastMgr: this.toastMgr};
+	},
 	data() {
 		return {
 			authorized: false,
