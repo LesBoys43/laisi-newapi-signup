@@ -70,6 +70,7 @@ export default defineComponent({
 						},
 						onCopy() {
 							navigator.clipboard.writeText(code);
+							toastMgr.success('复制成功', {autoDismiss: 10000});
 						},
 					});
 				},
@@ -78,7 +79,6 @@ export default defineComponent({
 						weight: 'quiet',
 						onClick() {
 							self.$emit('refresh');
-							toastMgr.success('复制成功', {autoDismiss: 10000});
 						},
 					}, () => h(CdxIcon, {icon: cdxIconReload})), [
 						[
