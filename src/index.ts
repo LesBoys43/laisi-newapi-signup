@@ -9,7 +9,13 @@ function onerror(_a: any, _b: any, _c: any, _d: any, err: Error | string): void 
 	if ($app)
 		try {
 			$app.unmount();
-		} catch {}
+		} catch {
+			let appEl = document.getElementById('app')!;
+			// @ts-expect-error ...
+			appEl.__vue_app__ = undefined;
+			// @ts-expect-error ...
+			appEl._vnode = undefined;
+		}
 
 	handleError(err ?? '未知错误');
 }
