@@ -64,6 +64,20 @@ await bundle.write({
 
 await bundle.close();
 
+const dir = path.join(__dirname, "build");
+const re =
+  /(?<importer>import(?:\{[a-zA-Z ,]+\}from)?)"\.\/(?<filename>[a-zA-Z0-9.]+)";/gm;
+
+for (const file of fs.readdirSync(dir)) {
+  if (!file.endsWith(".js")) continue;
+  const p = path.join(dir, file);
+  const src = fs.readFileSync(p, "utf8");
+  fs.writeFileSync(
+    p,
+    src.replace(re, '$<importer>"/cached.php?file=$<filename>";'),
+  );
+}
+
 const lessContent = await fs.promises.readFile("src/app.less", "utf8");
 const result = await less.render(lessContent, {
   filename: "src/app.less",
