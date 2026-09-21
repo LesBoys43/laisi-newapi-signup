@@ -68,13 +68,18 @@ const dir = "build";
 const re =
   /(?<importer>import(?:\{[a-zA-Z$_ ,]+\}from)?)"\.\/(?<filename>[a-zA-Z0-9.]+)";/gm;
 
+const uniq = Math.random().toString(36).slice(2, 8);
+
 for (const file of fs.readdirSync(dir)) {
   if (!file.endsWith(".js")) continue;
   const p = path.join(dir, file);
   const src = fs.readFileSync(p, "utf8");
   fs.writeFileSync(
     p,
-    src.replaceAll(re, `$<importer>"/cached.php?file=$<filename>&uniq=${Math.random().toString(36).slice(2,8)}";`),
+    src.replaceAll(
+      re,
+      `$<importer>"/cached.php?file=$<filename>&uniq=${uniq}";`,
+    ),
   );
 }
 
