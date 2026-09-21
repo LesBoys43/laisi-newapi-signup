@@ -74,7 +74,7 @@ for (const file of fs.readdirSync(dir)) {
   const src = fs.readFileSync(p, "utf8");
   fs.writeFileSync(
     p,
-    src.replace(re, '$<importer>"/cached.php?file=$<filename>";'),
+    src.replaceAll(re, '$<importer>"/cached.php?file=$<filename>";'),
   );
 }
 
