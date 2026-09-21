@@ -66,7 +66,7 @@ await bundle.close();
 
 const dir = "build";
 const re =
-  /(?<importer>import(?:\{[a-zA-Z ,]+\}from)?)"\.\/(?<filename>[a-zA-Z0-9.]+)";/gm;
+  /(?<importer>import(?:\{[a-zA-Z$_ ,]+\}from)?)"\.\/(?<filename>[a-zA-Z0-9.]+)";/gm;
 
 for (const file of fs.readdirSync(dir)) {
   if (!file.endsWith(".js")) continue;
