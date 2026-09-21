@@ -64,7 +64,7 @@ await bundle.write({
 
 await bundle.close();
 
-const dir = path.join(__dirname, "build");
+const dir = "build";
 const re =
   /(?<importer>import(?:\{[a-zA-Z ,]+\}from)?)"\.\/(?<filename>[a-zA-Z0-9.]+)";/gm;
 
